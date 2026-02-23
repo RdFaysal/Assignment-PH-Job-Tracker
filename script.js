@@ -80,3 +80,121 @@ const jobs = [
     status: "all",
   },
 ];
+
+
+let currentTab = "all";
+
+const container = document.getElementById("jobContainer");
+const tabCount = document.getElementById("tabCount");
+
+
+
+function renderJobs() {
+
+  container.innerHTML = "";
+
+  const filtered = jobs.filter(job =>
+    currentTab === "all" ? true : job.status === currentTab
+  );
+
+  tabCount.textContent = filtered.length;
+
+  document.getElementById("emptyState").classList.toggle(
+    "hidden",
+    filtered.length !== 0
+  );
+
+  filtered.forEach(job => {
+
+    const card = document.createElement("div");
+    card.className = "card bg-white shadow";
+
+   card.innerHTML = `
+  <div class="card-body">
+
+    <div class="flex justify-between items-center">
+      <h2 class="card-title font-semibold text-xl">${job.company}</h2>
+      <div class="border-2 border-[#F1F2F4] p-2 rounded-full cursor-pointer delete">
+        <img src="./images/Vector (14).png" alt="">
+      </div>
+    </div>
+  
+
+    <p class="text-[#64748B]">${job.position}</p>
+
+    <div class="flex gap-4 py-1">
+      <span class="text-[#64748B]">${job.location}</span>
+      <span class="text-[#64748B]">${job.type}</span>
+      <span class="text-[#64748B]">${job.salary}</span>
+    </div>
+      <button class="btn w-32"> NOT APPLIED </button>
+
+    <p class="text-sm py-2">${job.description}</p>
+
+    <div class="card-actions justify-start mt-3">
+      <button class="btn btn-outline btn-success interview">INTERVIEW</button>
+      <button class="btn btn-outline btn-error rejected">REJECTED</button>
+    </div>
+
+  </div>
+`;
+
+
+
+    card.querySelector(".interview").onclick = () => {
+      job.status = "interview";
+      updateDashboard();
+      renderJobs();
+    
+    };
+
+    
+    card.querySelector(".rejected").onclick = () => {
+      job.status = "rejected";
+      updateDashboard();
+      renderJobs();
+    };
+
+    
+    card.querySelector(".delete").onclick = () => {
+      const index = jobs.findIndex(j => j.id === job.id);
+      jobs.splice(index, 1);
+      updateDashboard();
+      renderJobs();
+    };
+
+    container.appendChild(card);
+
+  });
+
+}
+
+
+function updateDashboard() {
+
+  document.getElementById("totalCount").textContent = jobs.length;
+
+  document.getElementById("interviewCount").textContent =
+    jobs.filter(j => j.status === "interview").length;
+
+  document.getElementById("rejectedCount").textContent =
+    jobs.filter(j => j.status === "rejected").length;
+
+}
+
+
+document.querySelectorAll(".tab").forEach(tab => {
+  tab.onclick = () => {
+    document.querySelectorAll(".tab").forEach(t => {
+      t.classList.remove("tab-active", "btn-info");
+    });
+    tab.classList.add("tab-active", "btn-info");
+    currentTab = tab.dataset.tab;
+    renderJobs();
+  };
+});
+
+
+updateDashboard();
+renderJobs();
+
