@@ -1,3 +1,5 @@
+
+// card data 
 const jobs = [
   {
     id: 1,
@@ -80,6 +82,7 @@ const jobs = [
     status: "all",
   },
 ];
+
 
 let currentTab = "all";
 
@@ -181,6 +184,7 @@ function updateDashboard() {
     jobs.filter(j => j.status === "rejected").length;
 }
 
+// tab active js file 
 document.querySelectorAll(".tab").forEach(tab => {
   tab.onclick = () => {
 
