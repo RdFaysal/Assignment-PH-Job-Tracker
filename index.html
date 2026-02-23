@@ -1,11 +1,10 @@
-
 <!doctype html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Assignment-PH-Job-Tracker</title>
- 
+
     <!-- tailwind + daisy ui  -->
     <link
       href="https://cdn.jsdelivr.net/npm/daisyui@5"
@@ -29,67 +28,56 @@
     </style>
   </head>
 
-<body class="bg-[#F8FAFC]">
+  <body class="bg-[#F8FAFC]">
+    <header class="container mx-auto pt-12">
+      <h2 class="text-3xl font-bold pl-5 md:pl-0 pb-2">Job Application Tracker</h2>
+    </header>
 
- 
-  <header class="container mx-auto pt-12">
-    <h2 class="text-3xl font-bold pb-2">
-      Job Tracker Dashboard
-    </h2>
-  </header>
-
- 
-  <section class="container mx-auto grid md:grid-cols-3 gap-4 " >
-
-    <div class="stat bg-white shadow rounded-lg">
-      <p class="stat-title font-medium">Total Jobs</p>
-      <p id="totalCount" class="stat-value font-bold text-2xl">0</p>
-    </div>
-
-    <div class="stat bg-white shadow rounded-xl">
-      <div class="stat-title">Interview</div>
-      <div id="interviewCount" class="stat-value text-success">0</div>
-    </div>
-
-    <div class="stat bg-white shadow rounded-xl">
-      <div class="stat-title">Rejected</div>
-      <div id="rejectedCount" class="stat-value text-error">0</div>
-    </div>
-
-  </section>
-
-  
-  <section class="p-5">
-
-    <div class="container mx-auto flex justify-between items-center mb-4">
-      <h2 class="text-xl font-bold">Available Jobs</h2>
-      <span id="tabCount" class=""> 0 Jobs</span>
-    </div>
-
-  
-   <div class="container mx-auto tabs tabs-boxed mb-5 flex gap-4">
-  <button class="tab tab-active btn btn-info" data-tab="all">All</button>
-  <button class="tab btn" data-tab="interview">Interview</button>
-  <button class="tab btn" data-tab="rejected">Rejected</button>
-</div>
-
-    <!-- Empty box-->
-    <div id="emptyState" class=" bg-white hidden container mx-auto text-center py-10 rounded-lg my-4 shadow">
-      <div class="flex justify-center">
-        <img src="images/jobs.png" alt="">
+    <section class="container mx-auto grid md:grid-cols-3 gap-4 p-5 md:p-0">
+      <div class="stat bg-white shadow rounded-lg">
+        <p class="stat-title font-medium">Total Jobs</p>
+        <p id="totalCount" class="stat-value font-bold text-2xl">0</p>
       </div>
-      <h3 class="text-lg font-semibold">No Jobs Available</h3>
-      <p class="text-gray-500">Check back soon for new job opportunities</p>
-    </div>
 
-    
-    <div id="jobContainer" class="container mx-auto space-y-4"></div>
+      <div class="stat bg-white shadow rounded-xl">
+        <div class="stat-title">Interview</div>
+        <div id="interviewCount" class="stat-value text-success">0</div>
+      </div>
 
-  </section>
+      <div class="stat bg-white shadow rounded-xl">
+        <div class="stat-title">Rejected</div>
+        <div id="rejectedCount" class="stat-value text-error">0</div>
+      </div>
+    </section>
 
-  <!-- JS file -->
-  <script src="script.js"></script>
+    <section class="p-5">
+      <div class="container mx-auto flex justify-between items-center mb-4">
+        <h2 class="text-xl font-bold">Available Jobs</h2>
+        <span id="tabCount" class="text-[#64748B] font-medium"></span>
+      </div>
 
-</body>
+      <div class="container mx-auto tabs tabs-boxed mb-5 flex gap-4">
+        <button class="tab tab-active btn btn-info text-white" data-tab="all">All</button>
+        <button class="tab btn" data-tab="interview">Interview</button>
+        <button class="tab btn" data-tab="rejected">Rejected</button>
+      </div>
+
+      <!-- Empty box-->
+      <div
+        id="emptyState"
+        class="bg-white hidden container mx-auto text-center py-10 rounded-lg my-4 shadow"
+      >
+        <div class="flex justify-center">
+          <img src="images/jobs.png" alt="" />
+        </div>
+        <h3 class="text-lg font-semibold">No Jobs Available</h3>
+        <p class="text-gray-500">Check back soon for new job opportunities</p>
+      </div>
+
+      <div id="jobContainer" class="container mx-auto space-y-4 pb-6 md:pb-12"></div>
+    </section>
+
+    <!-- JS file -->
+    <script src="script.js"></script>
+  </body>
 </html>
-
